@@ -1,19 +1,23 @@
-import sys
 import pygame
+from settings import Settings
+from ship import Ship
+import game_functions as gf
+
 
 def run_game():
     pygame.init();
-    bg_color = (230,230,230);
-    screem = pygame.display.set_mode((1024,740));
+    ai_settings = Settings()
+    screem = pygame.display.set_mode((ai_settings.screen_width,ai_settings.scren_height));
+
+    #Cria espaçonave
+    ship = Ship(screem)
+
     pygame.display.set_caption("Alien invasion");
     while True:
-        #Eventos do teclado.
-        for event in pygame.event.get():
-            print(event)
-            if event.type == pygame.QUIT:
-                sys.exit()
+        gf.check_events()
         #Tela recente fica visivel
-        screem.fill(bg_color)
+        screem.fill(ai_settings.bg_color)
+        ship.blitme()
         pygame.display.flip()
 
 run_game()
