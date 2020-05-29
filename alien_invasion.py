@@ -15,9 +15,8 @@ def run_game():
     pygame.display.set_caption("Alien invasion");
     while True:
         gf.check_events()
+        gf.update_screen(ai_settings,screem,ship)
         #Tela recente fica visivel
-        screem.fill(ai_settings.bg_color)
-        ship.blitme()
         pygame.display.flip()
 
 run_game()
