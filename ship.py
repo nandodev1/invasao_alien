@@ -27,8 +27,10 @@ class Ship:
     def update(self):
         #atualiza a espaço de acordo com flag
         if self.moving_rigth:
-            self.center += self.ai_settings.ship_speed_factor
+            """Atualiza centro da espaço nave e não o retangulo"""
+            if self.moving_rigth and self.rect.right < self.screen_rect.right:
+                self.center += self.ai_settings.ship_speed_factor
         if self.moving_left:
-            self.center -= self.ai_settings.ship_speed_factor
-        print('Centerx: ', self.rect.centerx)
+            if self.moving_left and self.rect.left > 0:
+                self.center -= self.ai_settings.ship_speed_factor
         self.rect.centerx = self.center
